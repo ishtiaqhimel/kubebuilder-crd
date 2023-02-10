@@ -1,0 +1,27 @@
+# permissions for end users to view customcrds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: customcrd-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubebuilder-crd
+    app.kubernetes.io/part-of: kubebuilder-crd
+    app.kubernetes.io/managed-by: kustomize
+  name: customcrd-viewer-role
+rules:
+- apiGroups:
+  - myapi.ishtiaq.com
+  resources:
+  - customcrds
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - myapi.ishtiaq.com
+  resources:
+  - customcrds/status
+  verbs:
+  - get

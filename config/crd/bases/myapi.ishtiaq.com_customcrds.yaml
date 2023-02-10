@@ -1,0 +1,92 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.1
+  creationTimestamp: null
+  name: customcrds.myapi.ishtiaq.com
+spec:
+  group: myapi.ishtiaq.com
+  names:
+    kind: CustomCrd
+    listKind: CustomCrdList
+    plural: customcrds
+    singular: customcrd
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: CustomCrd is the Schema for the customcrds API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CustomCrdSpec defines the desired state of CustomCrd
+            properties:
+              container:
+                description: Container contains Image and Port
+                properties:
+                  image:
+                    type: string
+                  port:
+                    format: int32
+                    type: integer
+                required:
+                - image
+                - port
+                type: object
+              deploymentName:
+                description: 'INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                  DeploymentName represents the name of the deployment we will create
+                  using CustomCrd'
+                type: string
+              replicas:
+                description: Replicas defines number of pods will be running in the
+                  deployment
+                format: int32
+                type: integer
+              service:
+                description: Service contains ServiceName, ServiceType, ServiceNodePort
+                properties:
+                  serviceName:
+                    type: string
+                  servicePort:
+                    format: int32
+                    type: integer
+                  serviceType:
+                    type: string
+                required:
+                - serviceType
+                type: object
+            required:
+            - container
+            - replicas
+            type: object
+          status:
+            description: CustomCrdStatus defines the observed state of CustomCrd
+            properties:
+              availableReplicas:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file'
+                format: int32
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

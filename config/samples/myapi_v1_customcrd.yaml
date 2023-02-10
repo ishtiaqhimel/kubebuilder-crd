@@ -1,0 +1,21 @@
+apiVersion: myapi.ishtiaq.com/v1
+kind: CustomCrd
+metadata:
+  labels:
+    app.kubernetes.io/name: customcrd
+    app.kubernetes.io/instance: customcrd-sample
+    app.kubernetes.io/part-of: kubebuilder-crd
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kubebuilder-crd
+  name: customcrd-sample
+spec:
+  # TODO(user): Add fields here
+  # deploymentName: "my-deploy"
+  replicas: 3
+  container:
+    image: ishtiaq99/go-api-server
+    port: 3000
+  service:
+    # serviceName: "my-service"
+    serviceType: "NodePort"
+    # servicePort: 30007

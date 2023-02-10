@@ -1,0 +1,33 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - myapi.ishtiaq.com
+  resources:
+  - customcrds
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - myapi.ishtiaq.com
+  resources:
+  - customcrds/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - myapi.ishtiaq.com
+  resources:
+  - customcrds/status
+  verbs:
+  - get
+  - patch
+  - update
