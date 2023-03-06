@@ -1,0 +1,20 @@
+apiVersion: api.ishtiaq.com/v1
+kind: Caller
+metadata:
+  labels:
+    app.kubernetes.io/name: caller
+    app.kubernetes.io/instance: caller-sample
+    app.kubernetes.io/part-of: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kubebuilder
+  name: caller-sample
+spec:
+  # TODO(user): Add fields here
+  schedule: "* * * * *"
+  container:
+    image: nginx
+    command:
+    - /bin/sh
+    - -c
+    - date; echo Hello World
+    restartPolicy: OnFailure

@@ -1,0 +1,31 @@
+# permissions for end users to edit callers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: caller-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubebuilder
+    app.kubernetes.io/part-of: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+  name: caller-editor-role
+rules:
+- apiGroups:
+  - api.ishtiaq.com
+  resources:
+  - callers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - api.ishtiaq.com
+  resources:
+  - callers/status
+  verbs:
+  - get
